@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Theme Toggle</title>
+  <style>
+    body {
+      background-color: white;
+      color: black;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      padding: 20px;
+    }
+    body.dark-theme {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Page</h1>
+  <p>This is a sample paragraph to test theme colors.</p>
+  <button id="themeToggleBtn">Switch to Dark Theme</button>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggleBtn');
+
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      if (document.body.classList.contains('dark-theme')) {
+        toggleBtn.textContent = 'Light Theme';
+      } else {
+        toggleBtn.textContent = 'Dark Theme';
+      }
+    });
+  </script>
+</body>
+</html>

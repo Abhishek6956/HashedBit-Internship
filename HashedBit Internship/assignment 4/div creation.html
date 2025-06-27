@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Div Creation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Dynamic Div Creation</h2>
+    <button id="createBtn">Create Div</button>
+    <button id="resetBtn">Reset</button>
+    <div id="container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('container');
+            const createBtn = document.getElementById('createBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            let counter = 1;
+
+            createBtn.addEventListener('click', function() {
+                // Create new div element
+                const newDiv = document.createElement('div');
+                newDiv.className = 'box';
+                newDiv.textContent = counter;
+                
+                // Set random background color
+                const randomColor = getRandomColor();
+                newDiv.style.backgroundColor = randomColor;
+                
+                // Set text color based on background brightness
+                newDiv.style.color = isColorLight(randomColor) ? '#000' : '#fff';
+                
+                // Add hover effect
+                newDiv.addEventListener('mouseover', function() {
+                    this.style.transform = 'scale(1.1)';
+                    this.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
+                });
+                
+                newDiv.addEventListener('mouseout', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+                
+                // Add click event to remove individual div
+                newDiv.addEventListener('click', function() {
+                    container.removeChild(this);
+                });
+                
+                // Append to container
+                container.appendChild(newDiv);
+                
+                // Increment counter
+                counter++;
+            });
+
+            resetBtn.addEventListener('click', function() {
+                container.innerHTML = '';
+                counter = 1;
+            });
+
+            // Helper function to generate random color
+            function getRandomColor() {
+                const letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            // Helper function to check if color is light
+            function isColorLight(color) {
+                // Convert hex to RGB
+                const r = parseInt(color.substr(1, 2), 16);
+                const g = parseInt(color.substr(3, 2), 16);
+                const b = parseInt(color.substr(5, 2), 16);
+                
+                // Calculate brightness
+                const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+                return brightness > 128;
+            }
+        });
+    </script>
+</body>
+</html>

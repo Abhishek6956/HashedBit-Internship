@@ -1,0 +1,184 @@
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: rebeccapurple;
+}
+
+/* Header Styles */
+header {
+    background-color: #305f68;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    max-height: 50px;
+    vertical-align: middle;
+    border-radius: 24px;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 20px;
+    margin-left: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #007bff; /* A nice blue for hover */
+}
+
+/* Menubar Styles */
+.menubar {
+    background-color: #444;
+    padding: 10px 20px;
+}
+
+.menubar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.menubar ul li {
+    margin: 0 15px;
+}
+
+.menubar ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.menubar ul li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+/* Container for Sidebar and Main Content */
+.container {
+    display: flex;
+    padding: 20px;
+    gap: 10px; /* Space between sidebar and main content */
+    max-width: 1800px;
+    margin: 20px auto; /* Center the container */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Styles */
+.sidebar {
+    flex: 1; /* Takes 1 part of the available space */
+    background-color: rosybrown;
+    padding: 20px;
+    border-right: 0px solid #eee;
+}
+
+.sidebar h3 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 10;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 3; /* Takes 3 parts of the available space */
+    padding: 20px;
+}
+
+.main-content h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.content-boxes {
+    display: flex;
+    flex-wrap: wrap; /* Allows boxes to wrap to the next line */
+    gap: 20px;
+    justify-content: center; /* Center boxes if they don't fill the row */
+}
+
+.box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    flex: 1 1 calc(33.333% - 40px); /* Distribute space for 3 boxes per row, accounting for gap */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 250px; /* Minimum width for each box */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.box h3 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.box p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack sidebar and main content vertically */
+    }
+
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .content-boxes {
+        flex-direction: column; /* Stack boxes vertically on smaller screens */
+    }
+
+    .box {
+        flex: 1 1 100%; /* Each box takes full width */
+    }
+}

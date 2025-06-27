@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List App</title>
+</head>
+<body>
+<div class="todo-container" style="max-width: 600px; margin: auto; padding: 20px; background-color: skyblue; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+  <h2>My Todo List</h2>
+
+  <input type="text" id="taskInput" placeholder="Enter a task">
+  <button onclick="addTask()">Add</button>
+
+  <ul id="taskList"></ul>
+</div>
+  <script>
+    let tasks = [];
+
+    function addTask() {
+      let input = document.getElementById("taskInput");
+      let newTask = input.value.trim();
+
+      if (newTask === "") {
+        alert("Please enter a task.");
+        return;
+      }
+
+      tasks.push(newTask);
+      tasks.sort(); // sort in ascending order
+      renderTasks();
+      input.value = ""; // clear input
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    function renderTasks() {
+      let list = document.getElementById("taskList");
+      list.innerHTML = "";
+
+      tasks.forEach((task, index) => {
+        let li = document.createElement("li");
+        li.textContent = task;
+
+        let deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.onclick = function () {
+          deleteTask(index);
+        };
+
+        li.appendChild(deleteBtn);
+        list.appendChild(li);
+      });
+    }
+  </script>
+
+</body>
+</html>

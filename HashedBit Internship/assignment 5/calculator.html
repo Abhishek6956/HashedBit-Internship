@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    .calculator {
+      background-color: white;
+      padding: 20px;
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px lightgray;
+      margin: auto;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+    button {
+      width: 45%;
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+    }
+    .output {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <h2>Calculator</h2>
+  
+  <input type="number" id="num1" placeholder="Enter first number">
+  <input type="number" id="num2" placeholder="Enter second number">
+  
+  <div>
+    <button onclick="calculate('add')">Add</button>
+    <button onclick="calculate('subtract')">Subtract</button>
+    <button onclick="calculate('multiply')">Multiply</button>
+    <button onclick="calculate('divide')">Divide</button>
+  </div>
+  
+  <div class="output" id="result">Result: </div>
+</div>
+
+<script>
+  function calculate(operation) {
+    let a = parseFloat(document.getElementById('num1').value);
+    let b = parseFloat(document.getElementById('num2').value);
+    let result = 0;
+
+    if (isNaN(a) || isNaN(b)) {
+      document.getElementById('result').innerText = "Result: Please enter both numbers.";
+      return;
+    }
+
+    switch (operation) {
+      case 'add':
+        result = a + b;
+        break;
+      case 'subtract':
+        result = a - b;
+        break;
+      case 'multiply':
+        result = a * b;
+        break;
+      case 'divide':
+        if (b === 0) {
+          document.getElementById('result').innerText = "Result: Cannot divide by zero.";
+          return;
+        }
+        result = a / b;
+        break;
+    }
+
+    document.getElementById('result').innerText = "Result: " + result;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TExt contener</title>
+  <style>
+    .text-here {
+    font-size: 55px;
+    font-family: sans-serif;
+    color: black;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    text-align: left;
+    letter-spacing: normal;
+    word-spacing: normal;
+}
+  </style>
+  </head>
+  <body>
+  <div class='text-here' id='text-container'>This is some example text</div>
+
+
+<input type="text" id="colorbox">
+
+<button id="colorchange">Change Colour</button>
+
+<br><br>
+
+<input type="range" id="fontsize" min="10" max="100" value="55">
+<br><br>
+
+
+<button id="italic" class="stylebt">Italics</button>
+<button id="underline" class="stylebt">Underline</button>
+<button id="bold" class="stylebt">Bold</button>
+
+<br><br>
+
+
+<select id="list">
+        <option value="serif">Serif</option>
+        <option value="sans-serif">Sans-Serif</option>
+        <option value="monospace">Monospace</option>
+        <option value="cursive">Cursive</option>
+        <option value="fantasy">Fantasy</option>
+    </select>
+
+
+<br><br>
+
+<button id="getstyle">Get CSS</button>
+
+<br><br>
+<p id="css-props"></p>
+<script>
+    const textContainer = document.getElementById("text-container");
+
+
+document.getElementById("colorchange").addEventListener("click", () => {
+  const color = document.getElementById("colorbox").value;
+  textContainer.style.color = color;
+});
+
+
+document.getElementById("fontsize").addEventListener("input", () => {
+  const size = document.getElementById("fontsize").value;
+  textContainer.style.fontSize = size + "px";
+});
+
+
+document.getElementById("italic").addEventListener("click", () => {
+  textContainer.style.fontStyle = 
+    textContainer.style.fontStyle === "italic" ? "normal" : "italic";
+});
+
+
+document.getElementById("underline").addEventListener("click", () => {
+  textContainer.style.textDecoration = 
+    textContainer.style.textDecoration === "underline" ? "none" : "underline";
+});
+
+
+document.getElementById("bold").addEventListener("click", () => {
+  textContainer.style.fontWeight = 
+    textContainer.style.fontWeight === "bold" ? "normal" : "bold";
+});
+
+// Font Family Dropdown
+document.getElementById("list").addEventListener("change", () => {
+  const font = document.getElementById("list").value;
+  textContainer.style.fontFamily = font;
+});
+
+
+document.getElementById("getstyle").addEventListener("click", () => {
+  const styles = window.getComputedStyle(textContainer);
+  const result = [];
+
+  const color = styles.color;
+  const fontSize = styles.fontSize;
+  const fontFamily = styles.fontFamily;
+  const fontStyle = styles.fontStyle;
+  const fontWeight = styles.fontWeight;
+  const textDecoration = styles.textDecorationLine;
+
+  
+  const colorInput = document.getElementById("colorbox").value || color;
+
+  if (colorInput) result.push(`color: ${colorInput};`);
+  if (fontSize) result.push(`font-size: ${fontSize};`);
+  if (fontFamily) result.push(`font-family: ${fontFamily};`);
+  if (fontStyle === "italic") result.push(`font-style: italic;`);
+  if (fontWeight === "700" || fontWeight === "bold") result.push(`font-weight: bold;`);
+  if (textDecoration === "underline") result.push(`text-decoration: underline;`);
+
+  document.getElementById("css-props").textContent = result.join(" ");
+});
+</script>
+</body>
+</html>
+  
